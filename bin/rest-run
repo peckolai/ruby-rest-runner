@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+require "bundler/setup"
+require_relative "../lib/rest_runner"
+
+# Entry point for the CLI
+RestRunner::CLI.start(ARGV)
+
