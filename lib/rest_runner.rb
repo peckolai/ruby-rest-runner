@@ -1,60 +1,44 @@
 require "thor"
 require "zeitwerk"
 require "tty-table"
+require "tty-prompt"
+require "tty-progressbar"
 
 # Setup autoloading so we don't have to manually 'require' every file
 loader = Zeitwerk::Loader.for_gem
 loader.setup
 
 module RestRunner
+  # Main CLI entry point using Thor framework.
+  # Delegates to subcommands in lib/rest_runner/commands/
   class CLI < Thor
-    desc "run PATH", "Execute a REST collection file (YAML)"
+    desc "exec PATH", "Execute a REST collection file (YAML format)"
     method_option :env, aliases: "-e", desc: "Path to environment variables file"
-    method_option :verbose, type: :boolean, default: false
-    
-   # Inside lib/rest_runner.rb
+    method_option :verbose, type: :boolean, default: false, desc: "Show detailed output"
+    # Execute a collection file with optional environment override.
+    # @param path [String] Path to YAML collection file
     def exec(path)
-      collection = CollectionParser.load(path)
-      VariableResolver.resolve!(collection)
+      Commands::Run.new(options).execute(path)
+    end
 
-      overall_success = true
-      results = []
+    desc "env-list", "List all available environments"
+    # List configured environments from config/envs/ directory.
+    def env_list
+      Commands::EnvList.new.execute
+    end
 
-      say "\nRunning: #{collection[:name]}", :bold
-      say "=" * 40
+    desc "env-set NAME VALUE", "Set an environment variable"
+    # Set a single environment variable interactively or via parameters.
+    # @param name [String] Variable name
+    # @param value [String] Variable value
+    def env_set(name = nil, value = nil)
+      Commands::EnvSet.new.execute(name, value)
+    end
 
-      collection[:tests].each do |test_spec|
-        print "TEST: #{test_spec[:name]} ... "
-        
-        executor = Executor.new(test_spec)
-        result = executor.run_test
-        
-        if result[:success]
-          say "PASS", :green
-        else
-          say "FAIL", :red
-          overall_success = false
-        end
-
-        results << result
-      end
-
-      say "\n"
-      header = ["Test Name", "Status", "Code", "Latency"]
-      rows = results.map do |r|
-        status_color = r[:success] ? :green : :red
-        [
-          r[:name],
-          set_color(r[:success] ? "PASS" : "FAIL", status_color),
-          r[:status],
-          "#{r[:latency_ms]}ms"
-        ]
-      end
-
-      table = TTY::Table.new(header, rows)
-      puts table.render(:ascii, padding: [0, 2])
-
-      exit(overall_success ? 0 : 1)
+    desc "collections-list", "List available collection files"
+    # Discover and list collection files from collections/ directory.
+    def collections_list
+      Commands::CollectionsList.new.execute
     end
   end
 end

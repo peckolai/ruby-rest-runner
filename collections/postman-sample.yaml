@@ -1,0 +1,33 @@
+# Collection Metadata
+name: "User Management Production Sanity"
+description: "A suite to verify core API functionality in the production environment."
+hooks_path: "./hooks/auth_helper.rb"
+
+# Test Definitions
+tests:
+  - name: "Health Check"
+    endpoint: "https://jsonplaceholder.typicode.com/posts/1"
+    method: "GET"
+    assertions:
+      status: 200
+      max_latency_ms: 1000
+
+  - name: "Create Mock Resource"
+    endpoint: "https://jsonplaceholder.typicode.com/posts"
+    method: "POST"
+    headers:
+      Content-Type: "application/json"
+      Authorization: "Bearer ${API_TOKEN}" # Placeholder for interpolation
+    body:
+      title: "Senior Project"
+      body: "Ruby REST Runner Implementation"
+      userId: 1
+    assertions:
+      status: 201
+      body_contains: "Senior Project"
+
+  - name: "Validate Schema Fail Case"
+    endpoint: "https://jsonplaceholder.typicode.com/posts/999"
+    method: "GET"
+    assertions:
+      status: 404
