@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  rest-runner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ruby-rest-runner:latest
+    container_name: rest-runner
+    
+    # Mount your collections and environment configs
+    volumes:
+      - ./collections:/app/collections:ro
+      - ./config/envs:/app/config/envs:ro
+      - ./results:/app/results
+    
+    # Pass environment variables
+    environment:
+      - RUBY_RLWRAP=1
+      - LOG_LEVEL=info
+    
+    # Override entrypoint for local development
+    # Uncomment to run in interactive mode
+    # stdin_open: true
+    # tty: true
+    
+    # Resource limits
+    # mem_limit: 512m
+    # cpus: '1'
+    
+    networks:
+      - rest-runner
+
+networks:
+  rest-runner:
+    driver: bridge

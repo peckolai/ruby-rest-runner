@@ -41,6 +41,29 @@ cd ruby-rest-runner
 bundle install
 ```
 
+### Docker Installation
+
+The fastest way to get started without installing Ruby dependencies:
+
+```bash
+# Build the Docker image
+docker build -t ruby-rest-runner:latest .
+
+# Run a collection
+docker run --rm \
+  -v $(pwd)/collections:/app/collections:ro \
+  ruby-rest-runner:latest \
+  exec collections/demo.yml
+```
+
+Or use Docker Compose:
+```bash
+docker-compose up --build
+docker-compose run --rm rest-runner exec collections/demo.yml
+```
+
+**See [DOCKER.md](DOCKER.md) for detailed Docker usage instructions.**
+
 ### Usage
 
 #### Run Collections

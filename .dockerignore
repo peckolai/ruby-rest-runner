@@ -1,28 +1,25 @@
-.bundle/
+.git
+.gitignore
+.bundle
 vendor/bundle
 *.gem
 .env
 .env.local
-.env.docker
-collections/
-config/envs/
-
-# Docker
-.docker/
-*.tar.gz
-
-# Test artifacts
 coverage/
 .rspec
 .rspec_status
 spec/tmp/
-
-# Documentation
 doc/
 .yardoc/
-
-# IDE
 .vscode/
 .idea/
 *.swp
 *.swo
+node_modules/
+.DS_Store
+Makefile
+*.md
+spec/
+.gitlab-ci.yml
+.github/
+.editorconfig
