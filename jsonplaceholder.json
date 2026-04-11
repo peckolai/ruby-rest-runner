@@ -1,0 +1,92 @@
+{
+	"info": {
+		"name": "JSONPlaceholder API",
+		"description": "Collection for testing the JSONPlaceholder fake online REST API.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET All Posts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts",
+					"protocol": "https",
+					"host": ["jsonplaceholder", "typicode", "com"],
+					"path": ["posts"]
+				}
+			}
+		},
+		{
+			"name": "GET Single Post",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts/1",
+					"protocol": "https",
+					"host": ["jsonplaceholder", "typicode", "com"],
+					"path": ["posts", "1"]
+				}
+			}
+		},
+		{
+			"name": "CREATE a Post",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Postman Tutorial\",\n    \"body\": \"Learning how to use collections.\",\n    \"userId\": 1\n}"
+				},
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts",
+					"protocol": "https",
+					"host": ["jsonplaceholder", "typicode", "com"],
+					"path": ["posts"]
+				}
+			}
+		},
+		{
+			"name": "UPDATE a Post (PUT)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"title\": \"Updated Title\",\n    \"body\": \"Updated content.\",\n    \"userId\": 1\n}"
+				},
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts/1",
+					"protocol": "https",
+					"host": ["jsonplaceholder", "typicode", "com"],
+					"path": ["posts", "1"]
+				}
+			}
+		},
+		{
+			"name": "DELETE a Post",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts/1",
+					"protocol": "https",
+					"host": ["jsonplaceholder", "typicode", "com"],
+					"path": ["posts", "1"]
+				}
+			}
+		}
+	]
+}

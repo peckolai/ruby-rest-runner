@@ -40,5 +40,15 @@ module RestRunner
     def collections_list
       Commands::CollectionsList.new.execute
     end
+
+    desc "import SOURCE [OUTPUT]", "Import a Postman v2.1 or OpenAPI 3.1 collection"
+    method_option :output, aliases: "-o", desc: "Output YAML filename (default: auto-generated)"
+    # Import collection from external format (Postman/OpenAPI) to RestRunner YAML.
+    # @param source [String] Path to Postman JSON or OpenAPI YAML/JSON file
+    # @param output [String, nil] Optional output filename
+    def import(source, output = nil)
+      output ||= options[:output]
+      Commands::Import.new.execute(source, output)
+    end
   end
 end

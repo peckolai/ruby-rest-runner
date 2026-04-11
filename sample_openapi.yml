@@ -1,0 +1,90 @@
+openapi: 3.1.0
+info:
+  title: JSONPlaceholder API
+  description: Public API for testing with fake data
+  version: 1.0.0
+servers:
+  - url: https://jsonplaceholder.typicode.com
+paths:
+  /posts:
+    get:
+      summary: Get all posts
+      operationId: getAllPosts
+      responses:
+        '200':
+          description: List of all posts
+    post:
+      summary: Create a new post
+      operationId: createPost
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: My Post Title
+                body:
+                  type: string
+                  example: This is the post content
+                userId:
+                  type: integer
+                  example: 1
+      responses:
+        '201':
+          description: Post created successfully
+  /posts/{id}:
+    get:
+      summary: Get a post by ID
+      operationId: getPostById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Post found
+    put:
+      summary: Update a post
+      operationId: updatePost
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                body:
+                  type: string
+                userId:
+                  type: integer
+      responses:
+        '200':
+          description: Post updated
+    delete:
+      summary: Delete a post
+      operationId: deletePost
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Post deleted

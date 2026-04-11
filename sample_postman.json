@@ -1,0 +1,58 @@
+{
+  "info": {
+    "name": "JSONPlaceholder API Tests",
+    "description": "Testing public JSONPlaceholder API endpoints"
+  },
+  "item": [
+    {
+      "name": "Get Post by ID",
+      "request": {
+        "method": "GET",
+        "url": "https://jsonplaceholder.typicode.com/posts/1",
+        "header": []
+      }
+    },
+    {
+      "name": "Create New Post",
+      "request": {
+        "method": "POST",
+        "url": "https://jsonplaceholder.typicode.com/posts",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\":\"New Post\",\"body\":\"This is a new post\",\"userId\":1}"
+        }
+      }
+    },
+    {
+      "name": "Update Post",
+      "request": {
+        "method": "PUT",
+        "url": "https://jsonplaceholder.typicode.com/posts/1",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\":\"Updated Title\",\"body\":\"Updated content\",\"userId\":1,\"id\":1}"
+        }
+      }
+    },
+    {
+      "name": "Delete Post",
+      "request": {
+        "method": "DELETE",
+        "url": "https://jsonplaceholder.typicode.com/posts/1",
+        "header": []
+      }
+    }
+  ]
+}
