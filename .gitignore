@@ -3,4 +3,5 @@ vendor/bundle
 *.gem
 .env
 collections/
+config/envs/
 

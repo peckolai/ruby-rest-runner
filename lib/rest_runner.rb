@@ -27,6 +27,13 @@ module RestRunner
       Commands::EnvList.new.execute
     end
 
+    desc "env-use [NAME]", "Select and view an environment"
+    # Interactively select or view a specific environment and its variables.
+    # @param name [String, nil] Environment name (or prompt if omitted)
+    def env_use(name = nil)
+      Commands::EnvUse.new.execute(name)
+    end
+
     desc "env-set NAME VALUE", "Set an environment variable"
     # Set a single environment variable interactively or via parameters.
     # @param name [String] Variable name
@@ -49,6 +56,16 @@ module RestRunner
     def import(source, output = nil)
       output ||= options[:output]
       Commands::Import.new.execute(source, output)
+    end
+
+    desc "import-env SOURCE [NAME]", "Import environment variables from Postman environment export"
+    method_option :output, aliases: "-o", desc: "Output environment name (default: auto-generated)"
+    # Import environment from Postman environment JSON file.
+    # @param source [String] Path to Postman environment JSON file
+    # @param name [String, nil] Optional output environment name
+    def import_env(source, name = nil)
+      name ||= options[:output]
+      Commands::ImportEnv.new.execute(source, name)
     end
   end
 end

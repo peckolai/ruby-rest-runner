@@ -1,0 +1,33 @@
+{
+  "id": "12345",
+  "name": "Production",
+  "values": [
+    {
+      "key": "base_url",
+      "value": "https://api.example.com",
+      "type": "string",
+      "enabled": true
+    },
+    {
+      "key": "api_key",
+      "value": "prod_key_12345",
+      "type": "string",
+      "enabled": true
+    },
+    {
+      "key": "timeout",
+      "value": "30000",
+      "type": "number",
+      "enabled": true
+    },
+    {
+      "key": "debug_mode",
+      "value": "false",
+      "type": "boolean",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2026-04-11T10:00:00.000Z",
+  "_postman_exported_using": "Postman/11.0.0"
+}

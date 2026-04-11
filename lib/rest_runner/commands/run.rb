@@ -14,13 +14,25 @@ module RestRunner
       # @return [void]
       def execute(path)
         collection = CollectionParser.load(path)
-        VariableResolver.resolve!(collection)
+
+        # Load environment if specified
+        env_manager = EnvironmentManager.new(@options[:env]) if @options[:env]
+        env_vars = env_manager&.variables || {}
+
+        # Resolve variables with environment context
+        VariableResolver.resolve!(collection, env_vars)
 
         overall_success = true
         results = []
 
         puts "\n"
         puts set_color("Running: #{collection[:name]}", :bold)
+        
+        # Display active environment if set
+        if env_manager&.current_env
+          puts set_color("Environment: #{env_manager.current_env}", :cyan)
+        end
+        
         puts set_color("=" * 60, :cyan)
 
         # Use progress bar if we have many tests
