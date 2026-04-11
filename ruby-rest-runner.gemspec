@@ -2,18 +2,21 @@
 
 Gem::Specification.new do |s|
   s.name          = "ruby-rest-runner"
-  s.version       = "0.1.0"
+  s.version       = "1.0.0"
   s.authors       = ["Ruby REST Runner Contributors"]
   s.email         = ["dev@ruby-rest-runner.local"]
-  s.summary       = "High-performance REST collection runner for the terminal"
-  s.description   = "A Postman-like CLI tool for executing and validating REST API collections with async/Fiber-based concurrency"
-  s.homepage      = "https://github.com/username/ruby-rest-runner"
+  s.summary       = "High-performance Postman alternative with async Fiber execution"
+  s.description   = <<~DESC
+    A feature-rich REST API testing tool built in Ruby with Fiber-based async execution,
+    Postman/OpenAPI support, multi-environment management, and secure secret handling.
+  DESC
+  s.homepage      = "https://github.com/peckolai/ruby-rest-runner"
   s.license       = "MIT"
 
   # Executables
   s.executables   = ["rest-run"]
   s.files         = Dir.glob("lib/**/*") + Dir.glob("bin/**/*") + Dir.glob("config/**/*") + 
-                    ["Gemfile", "README.md", "LICENSE"]
+                    %w[Gemfile README.md QUICK_START.md SECURITY.md LICENSE .yardopts]
 
   # Ruby version
   s.required_ruby_version = ">= 3.4.0"
