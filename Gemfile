@@ -16,3 +16,13 @@ gem "benchmark"      # Standard library support for latency measurement (needed 
 
 gem 'pry'
 gem 'byebug'
+
+group :test do
+  gem 'rspec', '~> 3.13'   # BDD testing framework
+  gem 'rspec-its'          # Attribute testing helper
+end
+
+group :development do
+  gem 'yard'               # YARD documentation generation
+  gem 'kramdown'           # Markdown processor for YARD
+end

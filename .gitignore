@@ -5,3 +5,19 @@ vendor/bundle
 .env.local
 collections/
 config/envs/
+
+# Test artifacts
+coverage/
+.rspec
+.rspec_status
+spec/tmp/
+
+# Documentation
+doc/
+.yardoc/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

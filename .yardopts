@@ -1,0 +1,5 @@
+--markup markdown
+--markup-provider kramdown
+--title "Rest Runner - Postman Alternative in Ruby"
+--readme README.md
+lib/**/*.rb
