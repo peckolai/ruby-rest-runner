@@ -67,5 +67,26 @@ module RestRunner
       name ||= options[:output]
       Commands::ImportEnv.new.execute(source, name)
     end
+
+    desc "secret-store KEY [VALUE]", "Store a secret securely in system keychain"
+    # Store a sensitive value in secure storage (Keychain, pass, or .env.local).
+    # @param key [String] Secret key/name
+    # @param value [String, nil] Secret value (prompted if omitted)
+    def secret_store(key, value = nil)
+      Commands::SecretStore.new.execute(key, value)
+    end
+
+    desc "secret-list", "List all stored secrets"
+    # List all secret keys stored in keychain (values masked for security).
+    def secret_list
+      Commands::SecretList.new.execute
+    end
+
+    desc "secret-retrieve KEY", "Retrieve a secret from keychain"
+    # Look up and display a secret (masked to prevent shoulder surfing).
+    # @param key [String] Secret key to retrieve
+    def secret_retrieve(key)
+      Commands::SecretRetrieve.new.execute(key)
+    end
   end
 end

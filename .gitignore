@@ -2,6 +2,6 @@
 vendor/bundle
 *.gem
 .env
+.env.local
 collections/
 config/envs/
-
