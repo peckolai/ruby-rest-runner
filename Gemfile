@@ -4,10 +4,13 @@ source "https://rubygems.org"
 
 gem "thor"           # For the CLI wrapper
 gem "faraday"        # The HTTP client
+gem "async-http"     # Non-blocking HTTP via Fiber Scheduler
+gem "async"          # Fiber-based concurrency primitives
 gem "tty-table"      # For pretty console output
 gem "tty-color"      # To detect CI vs Interactive terminal
 gem "zeitwerk"       # For elegant code loading (standard in modern Ruby)
 gem "dry-validation" # For validating our YAML schema
+gem "benchmark"      # Standard library support for latency measurement (needed for Ruby 3.4+)
 
 gem 'pry'
 gem 'byebug'
