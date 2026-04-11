@@ -64,6 +64,31 @@ docker-compose run --rm rest-runner exec collections/demo.yml
 
 **See [DOCKER.md](DOCKER.md) for detailed Docker usage instructions.**
 
+### Windows Executable (OCRA)
+
+Create a standalone Windows .exe without requiring Ruby installation:
+
+```bash
+gem install ocra
+ruby build_ocra_exe.rb
+```
+
+This creates `dist/rest-run.exe` that works on any Windows machine.
+
+**See [INSTALL_OCRA.md](INSTALL_OCRA.md) for complete Windows build instructions.**
+
+### Portable Package (TravlingRuby)
+
+Build self-contained packages for Windows, macOS, and Linux:
+
+```bash
+./build_traveling_ruby.sh
+```
+
+Creates packages in `dist/` for each platform (~50MB each).
+
+**See [INSTALL_TRAVELING_RUBY.md](INSTALL_TRAVELING_RUBY.md) for complete packaging instructions.**
+
 ### Usage
 
 #### Run Collections
