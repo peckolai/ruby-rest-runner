@@ -344,3 +344,43 @@ For issues, feature requests, or questions:
 ---
 
 **Built with Ruby 3.4+ • Fiber-based async • 100% open source**
+
+---
+### Interactive Oneshot Command & Auth Hook
+
+You can run a single HTTP request interactively:
+
+```sh
+bin/rest-run oneshot --debug
+```
+
+- Prompts for method, URL, headers, cookies, and body.
+- Integrates with `hooks/auth_helper.rb` for authentication (Bearer token, etc).
+- Debug output is colorized and paged with `less -R`.
+
+#### Customizing Authentication
+
+Edit `hooks/auth_helper.rb` to change how authentication headers are injected (e.g., prompt, ENV, keychain).
+
+---
+#### Debug Mode
+
+All commands support a `--debug` option:
+
+- Prints full HTTP request and response details for each test/request.
+- Output is colorized and paged for easy inspection (defaults to `less -R`).
+- Pager is configurable via `$PAGER` environment variable.
+- Automatically falls back to direct output if pager is unavailable.
+- Useful for troubleshooting, API contract validation, and development.
+
+Example:
+```sh
+bin/rest-run exec collections/myapi.yml --debug
+bin/rest-run oneshot --debug
+
+# Use a custom pager
+PAGER="more" bin/rest-run exec collections/myapi.yml --debug
+
+# Disable paging (direct output)
+PAGER="cat" bin/rest-run oneshot --debug
+```

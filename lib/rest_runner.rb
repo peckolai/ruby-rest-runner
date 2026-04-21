@@ -1,3 +1,4 @@
+
 require "thor"
 require "zeitwerk"
 require "tty-table"
@@ -12,9 +13,20 @@ module RestRunner
   # Main CLI entry point using Thor framework.
   # Delegates to subcommands in lib/rest_runner/commands/
   class CLI < Thor
+        desc "oneshot", "Interactively run a single HTTP request"
+        method_option :debug, type: :boolean, default: false, desc: "Show full request and response details"
+        def oneshot
+          Commands::Oneshot.new(options).execute
+        end
+
+        # Silence Thor deprecation warning by explicitly setting exit_on_failure?
+        def self.exit_on_failure?
+          true
+        end
     desc "exec PATH", "Execute a REST collection file (YAML format)"
     method_option :env, aliases: "-e", desc: "Path to environment variables file"
     method_option :verbose, type: :boolean, default: false, desc: "Show detailed output"
+    method_option :debug, type: :boolean, default: false, desc: "Show full request and response details for each test"
     # Execute a collection file with optional environment override.
     # @param path [String] Path to YAML collection file
     def exec(path)

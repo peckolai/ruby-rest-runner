@@ -45,7 +45,7 @@ module RestRunner
         end
 
         collection[:tests].each do |test_spec|
-          executor = Executor.new(test_spec)
+          executor = Executor.new(test_spec, debug: @options[:debug])
           result = executor.run_test
 
           if result[:success]

@@ -433,3 +433,14 @@ Track which features work with each installation method:
 - [INSTALL_TRAVELING_RUBY.md](INSTALL_TRAVELING_RUBY.md) - Cross-platform packages
 - [QUICK_START.md](QUICK_START.md) - 5-minute setup
 - [SECURITY.md](SECURITY.md) - Security best practices
+
+---
+### Quick Verification
+
+After installation, verify your setup with:
+
+```sh
+bin/rest-run oneshot --debug
+```
+
+This will prompt for request details and authentication, confirming the CLI works. For full usage and customization, see the README.
