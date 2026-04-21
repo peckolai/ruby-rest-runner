@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+gem "rouge"          # For syntax highlighting of JSON in debug output
 
 source "https://rubygems.org"
 

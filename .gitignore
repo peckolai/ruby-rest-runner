@@ -1,6 +1,7 @@
 .bundle/
 vendor/bundle
 *.gem
+.byebug_history
 .env
 .env.local
 .env.docker
